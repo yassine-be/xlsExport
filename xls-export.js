@@ -70,14 +70,13 @@ class XlsExport {
 
   objectToTable() {
     // extract keys from the first object, will be the title for each column
-    const colsHead = `<tr>${Object.keys(this._data[0]).map(key => `<td>${key}</td>`).join('')}</tr>`;
 
     const colsData = this._data.map(obj => [`<tr>
                 ${Object.keys(obj).map(col => `<td>${obj[col] ? obj[col] : ''}</td>`).join('')}
             </tr>`]) // 'null' values not showed
       .join('');
 
-    return `<table>${colsHead}${colsData}</table>`.trim(); // remove spaces...
+    return `<table>${colsData}</table>`.trim(); // remove spaces...
   }
 
   objectToSemicolons() {
