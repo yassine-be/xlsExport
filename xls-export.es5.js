@@ -81,11 +81,6 @@ var XlsExport = function () {
   }, {
     key: 'objectToTable',
     value: function objectToTable() {
-      // extract keys from the first object, will be the title for each column
-      var colsHead = '<tr>' + Object.keys(this._data[0]).map(function (key) {
-        return '<td>' + key + '</td>';
-      }).join('') + '</tr>';
-
       var colsData = this._data.map(function (obj) {
         return ['<tr>\n                ' + Object.keys(obj).map(function (col) {
           return '<td>' + (obj[col] ? obj[col] : '') + '</td>';
@@ -93,7 +88,7 @@ var XlsExport = function () {
       }) // 'null' values not showed
       .join('');
 
-      return ('<table>' + colsHead + colsData + '</table>').trim(); // remove spaces...
+      return ('<table>' + colsData + '</table>').trim(); // remove spaces...
     }
   }, {
     key: 'objectToSemicolons',
